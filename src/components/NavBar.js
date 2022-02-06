@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Stack, Text } from '@chakra-ui/react'
+import { Link, Stack, Heading } from '@chakra-ui/react'
 
 
 
@@ -13,11 +13,14 @@ export const NavBar = () => {
       p = "20px"
       direction='row'
       >
-            <Link>Home</Link>
-            <Link>Hombre</Link>
-            <Link>Mujer</Link>
-            <Link>Contacto</Link>
+          <Heading as="h1" color="orange.500">
+          BRAND
+          </Heading>
+          <Link>Home</Link>
+          <Link>Hombre</Link>
+          <Link>Mujer</Link>
+          <Link>Contacto</Link>
     </Stack>
-
+ 
     );
 }
