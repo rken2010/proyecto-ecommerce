@@ -1,6 +1,7 @@
 import './App.css';
 import { NavBar } from './components/NavBar';
-import { ChakraProvider, Container, Stack, SlackDivider } from '@chakra-ui/react'
+import { ChakraProvider, Container } from '@chakra-ui/react'
+import ItemListContainer from './components/ItemList/ItemListContainer';
 
 function App() {
   return (
@@ -8,8 +9,10 @@ function App() {
         <Container maxWidth="container.lg">
           <NavBar />
         </Container>
+        <ItemListContainer />
       </ChakraProvider>
   );
+
 }
 
 export default App;
