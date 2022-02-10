@@ -1,25 +1,31 @@
 import React, {useState} from "react";
-import { Button, Stack } from '@chakra-ui/react'
+import { Button, Stack, ButtonGroup, Text, Heading } from '@chakra-ui/react'
 
 
 
 export const ItemCount = ({stock , initial, onAdd}) => {
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(parseInt(initial));
     
     const decrement = () => {
-        setCount(count -1);
+        if (count > 0){setCount(count -1);}
+        else{ console.log("Error")}
          }
     const increment = () => {
-        setCount(count + 1);
-             }
+        if(stock > count) {setCount(count + 1);}
+        else{console.log("no hay stock")} 
+        }
+    function onAdd() { console.log ("Agregaste "+ {count.toString()} +" unidades del producto al carrito")}
     
     return(
         <>
-        <h3>Contador</h3>
-        <Stack direction="row">
-        <Button colorScheme='teal' size='md' m="10px" onClick={increment}> + </Button>
-        <h3 textAlign = "center">{count}</h3>
-        <Button colorScheme='teal' size='md' onClick={decrement}> - </Button>
+        <Stack alignItems="center" justifyContent="center" spacing={2}>
+                <Heading>Contador</Heading>
+                <Text fontSize='3xl'>{count}</Text>
+                <ButtonGroup size='sm' isAttached variant='outline'>
+                        <Button mr='-px' onClick={increment}>+</Button>
+                        <Button mr='-px' onClick={decrement}>-</Button>
+                </ButtonGroup>
+                <Button onClick={onAdd}>Agregar al Carrito</Button>
         </Stack>
         </>
     );

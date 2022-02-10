@@ -13,7 +13,7 @@ function App() {
         </Container>
         <Container>
         <ItemListContainer />
-       <ItemCount stock="10" initial="1" />
+       <ItemCount stock="10" initial="+1" />
         </Container>
       </ChakraProvider>
   );
