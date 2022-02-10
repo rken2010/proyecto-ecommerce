@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, Stack, Heading } from '@chakra-ui/react'
+import { CartWidget } from "./CartWidget/CartWidget.js";
 
 
 
@@ -20,7 +21,9 @@ export const NavBar = () => {
           <Link>Hombre</Link>
           <Link>Mujer</Link>
           <Link>Contacto</Link>
+          <CartWidget />
     </Stack>
- 
+    
+
     );
 }
