@@ -1,7 +1,7 @@
 import React from "react";
-function ItemListContainer (){
+function ItemListContainer({contenido = "Aca va a ir el contenido "}){
     return (
-    <h3> Aca va a ir el contenido </h3>
+    <h3>{contenido}</h3>
     )
 }
 
