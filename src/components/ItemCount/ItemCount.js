@@ -14,7 +14,9 @@ export const ItemCount = ({stock , initial, onAdd}) => {
         if(stock > count) {setCount(count + 1);}
         else{console.log("no hay stock")} 
         }
-    function onAdd() { console.log ("Agregaste "+ {count.toString()} +" unidades del producto al carrito")}
+    function onAdd() { 
+        console.log ({count});
+    }
     
     return(
         <>
