@@ -1,7 +1,15 @@
-import React from "react";
-function ItemListContainer({contenido = "Aca va a ir el contenido "}){
+import { Heading } from "@chakra-ui/react";
+import React, {useState} from "react";
+import { getProducts } from "../../mock/Products";
+
+function ItemListContainer({shopName = "Ropa Libre "}){
+    const [Products, setProducts] = useState ([]);
+    
+    getProducts.then((resolve) => {
+        console.log(resolve);
+    })
     return (
-    <h3>{contenido}</h3>
+    <Heading>{shopName}</Heading>
     )
 }
 
