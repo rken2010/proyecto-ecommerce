@@ -1,4 +1,4 @@
-import { Heading } from "@chakra-ui/react";
+import { Heading, Stack, Spinner, Container } from "@chakra-ui/react";
 import React, {useEffect, useState} from "react";
 import { getProducts } from "../../mock/catalogo";
 import ItemList from "../ItemList/ItemList";
@@ -24,8 +24,12 @@ function ItemListContainer({shopName = "Ropa Libre "}){
        <> 
         <Heading>{shopName}</Heading>
 
-        {cargando ? ( <Heading> Cargando...</Heading>) :
-            <ItemList catalogo={catalogo} />
+        {cargando ? ( <Heading> Cargando... <Spinner/></Heading>) :
+ 
+            <Stack direction="row">
+                <ItemList catalogo={catalogo} />
+            </Stack>
+
         }
       </>
     )

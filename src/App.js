@@ -11,7 +11,7 @@ function App() {
         <Container maxWidth="container.lg">
           <NavBar />
         </Container>
-        <Container>
+        <Container maxWidth="container.lg">
           <ItemListContainer />
           <ItemCount stock="10" initial="1" />
         </Container>
