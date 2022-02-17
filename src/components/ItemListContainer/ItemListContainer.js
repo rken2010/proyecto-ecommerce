@@ -33,6 +33,7 @@ function ItemListContainer({shopName = "Ropa Libre "}){
         }
       </>
     )
+
 }
 
 export default ItemListContainer;

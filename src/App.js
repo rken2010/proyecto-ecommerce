@@ -1,7 +1,7 @@
 import './App.css';
 import { NavBar } from './components/NavBar';
 import { ChakraProvider, Container } from '@chakra-ui/react'
-import ItemListContainer from './components/ItemListContainer/ItemListContainer.js';
+import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 import { ItemCount } from './components/ItemCount/ItemCount';
 
 
@@ -13,7 +13,9 @@ function App() {
         </Container>
         <Container maxWidth="container.lg">
           <ItemListContainer />
-          <ItemCount stock="10" initial="1" />
+        
+            
+
         </Container>
       </ChakraProvider>
   );
