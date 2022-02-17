@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, Stack, Heading } from '@chakra-ui/react'
-import { CartWidget } from "./CartWidget/CartWidget.js";
+import { CartWidget } from "../CartWidget/CartWidget.js";
 
 
 
