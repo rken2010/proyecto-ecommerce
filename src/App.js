@@ -11,9 +11,11 @@ function App() {
         <Container maxWidth="container.lg">
           <NavBar />
         </Container>
-        <Container>
-        <ItemListContainer />
+        <Container maxWidth="container.lg">
+          <ItemListContainer />
+        
             
+
         </Container>
       </ChakraProvider>
   );

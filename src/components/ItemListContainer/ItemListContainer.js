@@ -1,17 +1,39 @@
-import { Heading } from "@chakra-ui/react";
-import { ItemCount } from "../ItemCount/ItemCount";
+import { Heading, Stack, Spinner, Container } from "@chakra-ui/react";
+import React, {useEffect, useState} from "react";
+import { getProducts } from "../../mock/catalogo";
+import ItemList from "../ItemList/ItemList";
 
-
-function ItemListContainer({contenido = "Aca va a ir el contenido "}){
-  
-    return (
-   
-   <div>
-        <Heading>{contenido}</Heading>
-            <ItemCount stock="10"  initial="1" />
-    </div>
-        )
+function ItemListContainer({shopName = "Ropa Libre "}){
     
+    const [catalogo, setCatalogo] = useState ([]);
+    const [cargando, setCargando] = useState (true);
+    
+    useEffect(() => {
+        getProducts
+            .then((resolve) => {
+                setCatalogo(resolve);
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+            .finally(() => {
+                setCargando(false);
+            })
+    }, []);    
+    return (
+       <> 
+        <Heading>{shopName}</Heading>
+
+        {cargando ? ( <Heading> Cargando... <Spinner/></Heading>) :
+ 
+            <Stack direction="row">
+                <ItemList catalogo={catalogo} />
+            </Stack>
+
+        }
+      </>
+    )
+
 }
 
 export default ItemListContainer;

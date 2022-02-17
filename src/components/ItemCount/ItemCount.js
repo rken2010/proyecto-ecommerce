@@ -1,9 +1,10 @@
 import React, {useState} from "react";
-import { Button, Stack, ButtonGroup, Text } from '@chakra-ui/react'
+import { Button, Stack, ButtonGroup, Text, Heading } from '@chakra-ui/react'
 
 
 
 export const ItemCount = ({stock = 1 , initial = 1, onAdd}) => {
+
     const [count, setCount] = useState(parseInt(initial));
     
     const decrement = () => {
@@ -15,9 +16,10 @@ export const ItemCount = ({stock = 1 , initial = 1, onAdd}) => {
         else{console.log("no hay stock")} 
         }
     function onAdd() { 
-            console.log ({count});
-        }
-  
+
+        console.log ({count});
+    }
+
     
     return(
         <>
