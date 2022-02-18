@@ -1,4 +1,4 @@
-import { Heading, Stack, Spinner, Container } from "@chakra-ui/react";
+import { Heading, Stack, Spinner } from "@chakra-ui/react";
 import React, {useEffect, useState} from "react";
 import { getProducts } from "../../mock/catalogo";
 import ItemList from "../ItemList/ItemList";

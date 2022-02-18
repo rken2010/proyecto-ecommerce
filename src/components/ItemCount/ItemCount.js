@@ -15,12 +15,7 @@ export const ItemCount = ({stock = 1 , initial = 1, onAdd}) => {
         if(stock > count) {setCount(count + 1);}
         else{console.log("no hay stock")} 
         }
-    function onAdd() { 
 
-        console.log ({count});
-    }
-
-    
     return(
         <>
         <Stack alignItems="center" justifyContent="center" spacing={2}>
