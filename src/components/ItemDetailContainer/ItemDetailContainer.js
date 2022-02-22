@@ -1,6 +1,8 @@
 import { Stack, Heading, Spinner } from "@chakra-ui/react";
 import { useEffect, useState } from "react"
+
 import { useParams } from "react-router-dom";
+
 import { getItem } from "../../mock/catalogo";
 import ItemDetail from "../ItemDetail/ItemDetail";
 
@@ -14,6 +16,7 @@ const ItemDetailContainer = ({ id }) => {
             getItem(itemId)
                 .then(resolve => {
                     setCatalogo(resolve)
+
                 })
                 .catch((error) => {
                     console.log(error)
@@ -25,6 +28,7 @@ const ItemDetailContainer = ({ id }) => {
                     setCatalogo()
                 })
         }, [itemId]); 
+
     return (
         <Stack>
             {cargando ? ( <Heading> Cargando... <Spinner/></Heading>) :

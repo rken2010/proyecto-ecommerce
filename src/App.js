@@ -6,6 +6,7 @@ import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailCont
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 
+
 function App() {
   return (
     <ChakraProvider>
@@ -18,6 +19,9 @@ function App() {
               <Route path='/detail/:itemId' element={<ItemDetailContainer />}/>
           </Routes>
         </BrowserRouter>
+        </Container>
+        <Container>
+          <ItemDetailContainer />
         </Container>
       </ChakraProvider>
   );

@@ -2,6 +2,7 @@ import { Heading, Image, Stack, Box, StackDivider, Button } from "@chakra-ui/rea
 import { ItemCount } from "../ItemCount/ItemCount";
 import { Link } from 'react-router-dom'
 
+
 const Item = ({ nombre, imagen, stock, id }) => {
 
     function onAdd(count) { 
@@ -22,6 +23,9 @@ const Item = ({ nombre, imagen, stock, id }) => {
                     <Button colorScheme='teal' variant='ghost'>Ver detalle</Button>
                 </Link>
            </Box> 
+
+           <ItemCount stock={stock} onAdd initial="1"/>    
+
         </Stack>
     );
 };

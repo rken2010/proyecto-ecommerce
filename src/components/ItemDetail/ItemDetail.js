@@ -1,6 +1,7 @@
 import { Image, Heading, Stack, StackDivider, Box, Text, Badge } from "@chakra-ui/react"
 
 const ItemDetail = ({catalogo}) => {
+
     
     return (
         <>
@@ -18,6 +19,7 @@ const ItemDetail = ({catalogo}) => {
                 <Box>
                     <Text fontSize='md' textAlign="center">Detalle: {catalogo?.descripcion}</Text>
                     <Text fontSize='md' textAlign="center"> Precio: $ {catalogo?.precio}</Text>
+
                 </Box>  
            </Stack>
         </>
