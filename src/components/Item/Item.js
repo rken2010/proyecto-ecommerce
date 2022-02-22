@@ -10,7 +10,7 @@ const Item = ({ nombre, imagen, stock, id }) => {
     }
 
     return (
-        <Stack spacing={2} alignItems="center" justifyContent="center" wrap="flexWrap" divider={<StackDivider borderColor='gray.200' />} borderRadius="lg" padding="15px" shadow="md">
+        <Stack spacing={4} alignItems="center" justifyContent="center" wrap="flexWrap" divider={<StackDivider borderColor='gray.200' />} borderRadius="lg" padding="15px" shadow="md">
            <Box>
                 <Heading as='h4' size='md' textAlign="center">{ nombre }</Heading>
                 <Image src={imagen} alt={ nombre} boxSize="200"></Image>

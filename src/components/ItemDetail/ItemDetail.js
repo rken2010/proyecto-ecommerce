@@ -4,9 +4,9 @@ const ItemDetail = ({catalogo}) => {
     
     return (
         <>
-           <Stack spacing={2} alignItems="center" justifyContent="center" wrap="flexWrap" divider={<StackDivider borderColor='gray.200' />} borderRadius="lg" padding="15px" shadow="md">
+           <Stack spacing={10} alignItems="center" justifyContent="center" wrap="flexWrap" divider={<StackDivider borderColor='gray.200' />} borderRadius="lg" padding="15px" shadow="md">
                 <Box>
-                        <Heading as='h4' size='md' textAlign="center">{ catalogo?.nombre }
+                        <Heading as='h3' size='md' textAlign="center">{ catalogo?.nombre }
                         <Badge ml="1" colorScheme='purple'>New</Badge>
                         </Heading>
                         <Image 
@@ -16,7 +16,6 @@ const ItemDetail = ({catalogo}) => {
                         </Image>
                 </Box>
                 <Box>
-          
                     <Text fontSize='md' textAlign="center">Detalle: {catalogo?.descripcion}</Text>
                     <Text fontSize='md' textAlign="center"> Precio: $ {catalogo?.precio}</Text>
                 </Box>  

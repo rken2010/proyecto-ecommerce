@@ -22,11 +22,11 @@ function ItemListContainer({shopName = "Ropa Libre "}){
     }, []);    
     return (
        <> 
-        <Heading>{shopName}</Heading>
+        <Heading textAlign="center" m="20px">{shopName}</Heading>
 
         {cargando ? ( <Heading> Cargando... <Spinner/></Heading>) :
  
-            <Stack direction="row">
+            <Stack direction="row" spacing={4}>
                 <ItemList catalogo={catalogo} />
             </Stack>
 
