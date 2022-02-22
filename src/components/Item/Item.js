@@ -1,7 +1,8 @@
-import { Heading, Image, Stack, Box, Text, StackDivider } from "@chakra-ui/react";
+import { Heading, Image, Stack, Box, StackDivider, Button } from "@chakra-ui/react";
 import { ItemCount } from "../ItemCount/ItemCount";
+import { Link } from 'react-router-dom'
 
-const Item = ({ nombre, imagen, stock }) => {
+const Item = ({ nombre, imagen, stock, id }) => {
 
     function onAdd(count) { 
 
@@ -15,7 +16,12 @@ const Item = ({ nombre, imagen, stock }) => {
                 <Image src={imagen} alt={ nombre} boxSize="200"></Image>
            <StackDivider />
            </Box>
-           <ItemCount stock={stock} onAdd initial="1"/>    
+           <ItemCount stock={stock} onAdd initial="1"/>   
+           <Box>
+                <Link to={`/detail/${id}`}>
+                    <Button colorScheme='teal' variant='ghost'>Ver detalle</Button>
+                </Link>
+           </Box> 
         </Stack>
     );
 };

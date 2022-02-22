@@ -5,12 +5,15 @@ export const catalogo = [
     { id:4, nombre:"zapatillas", imagen:"./img/zapatilla.jpg", descripcion:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra.", stock:"5",precio:1150}
 ]
 
-export const getProducts = new Promise((resolve, reject) => {
+export const getProducts = new Promise((resolve ) => {
     setTimeout(() =>{
         resolve (catalogo)}, 2000)}
 );
 
-export const getItem = new Promise((resolve, reject) => {
-    setTimeout(() =>{
-        resolve (catalogo[0])}, 2000)}
-);
+export const getItem = (id) => {
+    return new Promise((resolve ) => {
+        const item = catalogo.find(item => item.id === parseInt(id))
+        console.log(item)
+        setTimeout(() =>{  resolve (item) }, 2000)
+    }
+);}
