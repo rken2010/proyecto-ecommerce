@@ -20,10 +20,7 @@ function App() {
           </Routes>
         </BrowserRouter>
         </Container>
-        <Container>
-          <ItemDetailContainer />
-        </Container>
-      </ChakraProvider>
+    </ChakraProvider>
   );
 
 }

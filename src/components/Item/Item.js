@@ -23,9 +23,6 @@ const Item = ({ nombre, imagen, stock, id }) => {
                     <Button colorScheme='teal' variant='ghost'>Ver detalle</Button>
                 </Link>
            </Box> 
-
-           <ItemCount stock={stock} onAdd initial="1"/>    
-
         </Stack>
     );
 };
