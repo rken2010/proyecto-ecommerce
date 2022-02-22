@@ -1,7 +1,7 @@
 import { Heading, Image, Stack, Box, Text, StackDivider } from "@chakra-ui/react";
 import { ItemCount } from "../ItemCount/ItemCount";
 
-const Item = ({ nombre, imagen, descripcion, stock }) => {
+const Item = ({ nombre, imagen, stock }) => {
 
     function onAdd(count) { 
 
@@ -15,9 +15,6 @@ const Item = ({ nombre, imagen, descripcion, stock }) => {
                 <Image src={imagen} alt={ nombre} boxSize="200"></Image>
            <StackDivider />
            </Box>
-           <Box>
-           <Text fontSize='md' textAlign="center">{descripcion}</Text>
-           </Box>  
            <ItemCount stock={stock} onAdd initial="1"/>    
         </Stack>
     );
