@@ -10,8 +10,7 @@ const ItemDetailContainer = ({ id }) => {
     const [catalogo, setCatalogo] = useState();
     const [cargando, setCargando] = useState (true);
     const { itemId } = useParams();
-    console.log(itemId)
-
+    
         useEffect(() => {
             getItem(itemId)
                 .then(resolve => {
