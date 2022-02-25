@@ -3,12 +3,9 @@ import { ItemCount } from "../ItemCount/ItemCount";
 import { Link } from 'react-router-dom'
 
 
-const Item = ({ nombre, imagen, stock, id }) => {
+const Item = ({ nombre, imagen, id }) => {
 
-    function onAdd(count) { 
-
-        console.log ({count});
-    }
+    
 
     return (
         <Stack spacing={4} alignItems="center" justifyContent="center" wrap="flexWrap" divider={<StackDivider borderColor='gray.200' />} borderRadius="lg" padding="15px" shadow="md">
@@ -17,7 +14,7 @@ const Item = ({ nombre, imagen, stock, id }) => {
                 <Image src={imagen} alt={ nombre} boxSize="200"></Image>
            <StackDivider />
            </Box>
-           <ItemCount stock={stock} onAdd initial="1"/>   
+            
            <Box>
                 <Link to={`/detail/${id}`}>
                     <Button colorScheme='teal' variant='ghost'>Ver detalle</Button>

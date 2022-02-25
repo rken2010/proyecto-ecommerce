@@ -24,7 +24,7 @@ export const ItemCount = ({stock = 1 , initial = 1, onAdd}) => {
                         <Button mr='-px' onClick={increment}>+</Button>
                         <Button mr='-px' onClick={decrement}>-</Button>
                 </ButtonGroup>
-                <Button onClick={onAdd}>Agregar al Carrito</Button>
+                <Button onClick={(e) => onAdd(count)}>Agregar al Carrito</Button>
         </Stack>
         </>
     );
