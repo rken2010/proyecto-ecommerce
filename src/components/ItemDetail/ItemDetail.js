@@ -1,23 +1,19 @@
 import { Image, Heading, Stack, StackDivider, Box, Text, Badge, Button } from "@chakra-ui/react"
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { ItemCount } from "../ItemCount/ItemCount";
 import { Link } from 'react-router-dom'
+import Context from "../../context/CartContext";
 
 
 const ItemDetail = ({catalogo}) => {
 
     const [on , setOn ] = useState(true)
+    const {addItem} = useContext(Context)
 
     function onAdd(count) { 
-        console.log (count);
         setOn(false); 
-        console.log(on)
+        addItem( catalogo , count)
     }
-
-   
-       
-
-    
 
     return (
         <>
