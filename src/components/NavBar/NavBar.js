@@ -1,13 +1,16 @@
-import { useEffect, useState } from 'react';
-import { Link, Stack, Heading, Box } from '@chakra-ui/react';
+import { useEffect, useState, useContext } from 'react';
+import { Link, Stack, Heading } from '@chakra-ui/react';
 import { CartWidget } from "../CartWidget/CartWidget.js";
 import { NavLink } from 'react-router-dom'
 import { getCategories } from '../../mock/catalogo.js';
+import Context from '../../context/CartContext.js';
 
 
 
 export const NavBar = () => {
     const [categories, setCategories] = useState([])
+    const {cart} = useContext(Context)
+
     useEffect(() => {
         getCategories().then(categories => {
           setCategories(categories)
@@ -35,7 +38,7 @@ export const NavBar = () => {
           >
                 {categories.map(cat => <NavLink key={cat.id} to={`/category/${cat.id}`}><Link>{cat.description}</Link></NavLink>)}
           </Stack>
-          <CartWidget />
+          {cart.length > 0 && <CartWidget />}
     </Stack>
     
 
