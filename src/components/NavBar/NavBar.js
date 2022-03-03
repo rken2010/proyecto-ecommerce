@@ -36,7 +36,7 @@ export const NavBar = () => {
                 justifyContent="space-evenly"
                 direction='row'
           >
-                {categories.map(cat => <NavLink key={cat.id} to={`/category/${cat.id}`}><Link>{cat.description}</Link></NavLink>)}
+                {categories.map(cat => <NavLink key={cat.id} to={`/category/${cat.id}`}><Link m="25px">{cat.description}</Link></NavLink>)}
           </Stack>
           {cart.length > 0 && <CartWidget />}
     </Stack>
