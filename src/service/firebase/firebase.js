@@ -14,4 +14,4 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 //Inicialize Firestore
-const catalogo = getFirestore(app);
+export const db = getFirestore(app);

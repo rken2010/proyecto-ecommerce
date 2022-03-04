@@ -2,8 +2,10 @@ import { useEffect, useState, useContext } from 'react';
 import { Link, Stack, Heading } from '@chakra-ui/react';
 import { CartWidget } from "../CartWidget/CartWidget.js";
 import { NavLink } from 'react-router-dom'
-import { getCategories } from '../../mock/catalogo.js';
 import Context from '../../context/CartContext.js';
+import { db } from "../../service/firebase/firebase";
+import { getDocs , collection, QuerySnapshot } from "firebase/firestore";
+
 
 
 
@@ -12,9 +14,16 @@ export const NavBar = () => {
     const {cart} = useContext(Context)
 
     useEffect(() => {
-        getCategories().then(categories => {
-          setCategories(categories)
-        })
+      const catalogoCollectionRef = collection(db , "categories");
+      
+
+      getDocs( catalogoCollectionRef ).then( QuerySnapshot => {
+             const categories = QuerySnapshot.docs.map ( doc => {
+                 return { id:doc.id, ...doc.data()}
+             })
+             setCategories(categories)
+             console.log(categories)
+              })              
       }, [])
 
     return (
@@ -31,12 +40,12 @@ export const NavBar = () => {
           </Heading>
           <NavLink to={"/"}><Link>Home</Link></NavLink>
           <Stack 
-                spacing={8}
+                spacing={5}
                 alignItems="space-evenly"
                 justifyContent="space-evenly"
                 direction='row'
           >
-                {categories.map(cat => <NavLink key={cat.id} to={`/category/${cat.id}`}><Link m="25px">{cat.description}</Link></NavLink>)}
+                {categories.map(cat => <NavLink key={cat.id} to={`/category/${cat.id}`}><Link m="20px" >{cat.description}</Link></NavLink>)}
           </Stack>
           {cart.length > 0 && <CartWidget />}
     </Stack>
