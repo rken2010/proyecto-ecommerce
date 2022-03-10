@@ -1,4 +1,5 @@
-import { Button, Heading, Img, Stack, StackDivider,  } from "@chakra-ui/react";
+import { Box, Button, Heading, Image, Img, Stack, StackDivider  } from "@chakra-ui/react";
+import { SmallCloseIcon } from "@chakra-ui/icons";
 import { useContext } from "react";
 import { DeleteIcon } from '@chakra-ui/icons'
 import Context from "../../context/CartContext";
@@ -9,8 +10,8 @@ const Cart = () => {
     return (
         <>
             {cart.map((prod) => 
-                <Stack spacing={10} alignItems="center" direction="row" justifyContent="center" divider={<StackDivider borderColor='gray.200' />} borderRadius="lg" padding="15px" shadow="md" >
-                    <Img src={prod?.imagen} alt={prod?.nombre} boxSize="50px"/>
+                <Stack spacing={5} alignItems="center" direction="row" justifyContent="space-between" divider={<StackDivider borderColor='gray.200' />} borderRadius="lg" padding="15px" shadow="base" mt="15px" >
+                    <Image src={prod?.imagen} alt={prod?.nombre} boxSize="50px" />
                     <p>Producto: {prod?.nombre}</p>
                     <p>Cantidad: {prod?.quantity}</p>
                     <p>Precio: {prod?.precio}</p>
@@ -18,9 +19,9 @@ const Cart = () => {
                 </Stack>
             )}
             <Stack m="20px">
-                <Heading as='h3' size='lg'>Total compra: {totalPurchase()}</Heading>
+                <Heading as='h3' size='lg'>Total compra: $ {totalPurchase()}</Heading>
             </Stack>
-            <Button onClick={(e) => clear() }>Vaciar Carrito</Button>
+            <Button leftIcon={<SmallCloseIcon/>} colorScheme="pink" onClick={(e) => clear()} >Vaciar Carrito</Button>
         </>
     )
 };

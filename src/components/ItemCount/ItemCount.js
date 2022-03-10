@@ -1,5 +1,6 @@
 import React, {useState} from "react";
-import { Button, Stack, ButtonGroup, Text, Heading } from '@chakra-ui/react'
+import { Button, Stack, ButtonGroup, Text } from '@chakra-ui/react'
+import { AddIcon } from "@chakra-ui/icons";
 
 
 
@@ -24,7 +25,7 @@ export const ItemCount = ({stock = 1 , initial = 1, onAdd}) => {
                         <Button mr='-px' onClick={increment}>+</Button>
                         <Button mr='-px' onClick={decrement}>-</Button>
                 </ButtonGroup>
-                <Button onClick={(e) => onAdd(count)}>Agregar al Carrito</Button>
+                <Button onClick={(e) => onAdd(count)} colorScheme='teal' size='lg' leftIcon={<AddIcon />}>Agregar al Carrito</Button>
         </Stack>
         </>
     );

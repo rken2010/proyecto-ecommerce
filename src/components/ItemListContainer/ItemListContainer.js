@@ -1,27 +1,34 @@
 import { Heading, Stack, Spinner } from "@chakra-ui/react";
 import React, {useEffect, useState} from "react";
-import { getProducts } from "../../mock/catalogo";
 import { useParams } from "react-router-dom";
 import ItemList from "../ItemList/ItemList";
+import { db } from "../../service/firebase/firebase";
+import { getDocs , collection, QuerySnapshot, query, where } from "firebase/firestore";
 
 function ItemListContainer({shopName = "Ropa Libre "}){
     
     const [catalogo, setCatalogo] = useState ([]);
     const [cargando, setCargando] = useState (true);
-    const { categoryId } = useParams();
+    const { categoryId } = useParams(); 
     
     useEffect(() => {
-        getProducts(categoryId)
-            .then((resolve) => {
-                setCatalogo(resolve);
-            })
-            .catch((error) => {
-                console.log(error)
-            })
+        const collectionRef = categoryId ? query ( collection (db, "catalogo"), where( "categoria", "==", categoryId)) : 
+        collection( db , "catalogo")
+
+        getDocs( collectionRef ).then( QuerySnapshot => {
+               const catalogo = QuerySnapshot.docs.map ( doc => {
+                   return { id:doc.id, ...doc.data()}
+               })
+               setCatalogo(catalogo)
+                })
+                        
             .finally(() => {
-                setCargando(false);
+                setCargando(false)
             })
-    }, [categoryId]);    
+            
+           
+    }, [categoryId]); 
+
     return (
        <> 
         <Heading textAlign="center" m="20px">{shopName}</Heading>

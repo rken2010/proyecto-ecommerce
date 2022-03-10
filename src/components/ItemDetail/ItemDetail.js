@@ -33,7 +33,7 @@ const ItemDetail = ({catalogo}) => {
                     <Text fontSize='md' textAlign="center"> Precio: $ {catalogo?.precio}</Text>
                 </Box>  
                 {on == true ?  <ItemCount stock={catalogo?.stock} onAdd={onAdd}  initial="1"/> :
-                    <Link to={`/cart`}><Button colorScheme='teal' variant='ghost'>Terminar Compra</Button>
+                    <Link to={`/cart`}><Button colorScheme='teal' size='lg'>Terminar Compra</Button>
                      </Link>
                 }
 
