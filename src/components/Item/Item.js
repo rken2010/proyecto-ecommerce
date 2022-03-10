@@ -1,5 +1,4 @@
 import { Heading, Image, Stack, Box, StackDivider, Button } from "@chakra-ui/react";
-import { ItemCount } from "../ItemCount/ItemCount";
 import { Link } from 'react-router-dom'
 
 
