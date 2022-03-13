@@ -22,7 +22,6 @@ export const NavBar = () => {
                  return { id:doc.id, ...doc.data()}
              })
              setCategories(categories)
-             console.log(categories)
               })              
       }, [])
 

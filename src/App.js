@@ -12,7 +12,6 @@ import Cart from './components/Cart/Cart';
 function App() {
   return (
     <ChakraProvider>
-      <Container maxWidth="container.lg">
         <CartContextProvider>
             <BrowserRouter>
               <NavBar />
@@ -24,7 +23,6 @@ function App() {
               </Routes>
             </BrowserRouter>
         </CartContextProvider>
-        </Container>
     </ChakraProvider>
   );
 

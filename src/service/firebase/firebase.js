@@ -1,5 +1,8 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, addDoc, collection, writeBatch, getDoc, doc } from "firebase/firestore";
+import { useToast } from '@chakra-ui/react'
+
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyA-DXfvUfLAyZLD7n4Cs9weBf7Itfk5FxE",
@@ -15,3 +18,34 @@ const app = initializeApp(firebaseConfig);
 
 //Inicialize Firestore
 export const db = getFirestore(app);
+
+// Send Order //
+export function sendOrder (orderToSend){
+  addDoc(collection(db, "orders"), orderToSend)
+    .then((response) => {
+      console.log(response)
+    })
+}
+//update DB // 
+export function reloadStock(orderToSend){
+  const batch = writeBatch(db)
+  const noStock = []
+  orderToSend.items.forEach(item => { 
+    getDoc(doc (db, "catalogo", item.id)).then(response => {
+      if( response.data().stock >= item.quantity ) { batch.update(doc(db,"catalogo", response.id),
+       { stock: response.data().stock - item.quantity })
+         } 
+         else{ noStock.push({ id:response.id, ...response.data()}) }
+        }
+      )
+    })
+    if(noStock.length === 0){
+      addDoc(collection(db, "orders"), orderToSend).then(({id}) => {
+        batch.commit()
+          .then(()=> {
+            alert(`compra realizada con exito ${id}`)
+          })
+      })
+    }
+  }
+  

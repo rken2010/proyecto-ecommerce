@@ -1,12 +1,46 @@
-import { Box, Button, Heading, Image, Img, Stack, StackDivider  } from "@chakra-ui/react";
-import { SmallCloseIcon } from "@chakra-ui/icons";
-import { useContext } from "react";
+import { Button, Heading, Image, Stack, StackDivider, Spinner  } from "@chakra-ui/react";
 import { DeleteIcon } from '@chakra-ui/icons'
+import { SmallCloseIcon } from "@chakra-ui/icons";
+import { ImCreditCard } from "react-icons/im";
+import { useContext, useState } from "react";
 import Context from "../../context/CartContext";
+import { sendOrder, reloadStock } from "../../service/firebase/firebase";
+
+
 
 const Cart = () => {
     const {cart} = useContext(Context)
     const {removeItem, clear, totalPurchase} = useContext(Context)
+    
+    const[controlOrder, setControlOrder] = useState(false)
+    const[processOrder, setProcessOrder] = useState()
+    const [contact, setContact] = useState({
+        name:``,
+        phone:``,
+        address:``,
+        comment:``,
+    })
+    const completePurchase = () =>{
+        const orderToSend = {
+            buyer: {
+                name:`juan`,
+                phone:"123546",
+                address:"asdf 123",
+                comment:"mi primera compra"
+            },
+            items: cart,
+            total:totalPurchase(),
+            date: new Date()
+        }
+        
+        reloadStock(orderToSend)
+        clear()
+        
+    } 
+    //if(processOrder){
+    //    return <Heading>Su orden se esta procesando<Spinner/></Heading>
+    //}
+    //
     return (
         <>
             {cart.map((prod) => 
@@ -21,7 +55,11 @@ const Cart = () => {
             <Stack m="20px">
                 <Heading as='h3' size='lg'>Total compra: $ {totalPurchase()}</Heading>
             </Stack>
-            <Button leftIcon={<SmallCloseIcon/>} colorScheme="pink" onClick={(e) => clear()} >Vaciar Carrito</Button>
+            <Stack direction="row" alignItems="center" justifyContent="space-around">
+                <Button leftIcon={<SmallCloseIcon/>} colorScheme="pink" onClick={(e) => clear()} >Vaciar Carrito</Button>
+                <Button leftIcon={<ImCreditCard/>} colorScheme='teal' onClick={(e)=> completePurchase()}>Confirmar compra</Button>
+            </Stack>
+            
         </>
     )
 };

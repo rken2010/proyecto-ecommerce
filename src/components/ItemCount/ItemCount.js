@@ -4,7 +4,7 @@ import { AddIcon } from "@chakra-ui/icons";
 
 
 
-export const ItemCount = ({stock = 1 , initial = 1, onAdd}) => {
+export const ItemCount = ({stock = 1 , initial = 0, onAdd}) => {
 
     const [count, setCount] = useState(parseInt(initial));
     

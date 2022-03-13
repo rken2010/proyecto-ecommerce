@@ -30,7 +30,7 @@ export const CartContextProvider = ({children}) => {
     }
 
     function findItem(id){
-        const item = cart.find( element => element.id == id )
+        const item = cart.find( element => element.id === id )
 
       if ( !id ) {
           throw new Error('No se encuentra el item ' + id)
