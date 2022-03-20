@@ -4,16 +4,14 @@ import { SmallCloseIcon } from "@chakra-ui/icons";
 import { ImCreditCard } from "react-icons/im";
 import { useContext, useState } from "react";
 import Context from "../../context/CartContext";
-import { sendOrder, reloadStock } from "../../service/firebase/firebase";
-
+import { reloadStock, sendOrder } from "../../service/firebase/firebase";
+import Swal from 'sweetalert2'
 
 
 const Cart = () => {
-    const {cart} = useContext(Context)
-    const {removeItem, clear, totalPurchase} = useContext(Context)
+    const {cart, removeItem, clear, totalPurchase} = useContext(Context)
+   
     
-    const[controlOrder, setControlOrder] = useState(false)
-    const[processOrder, setProcessOrder] = useState()
     const [contact, setContact] = useState({
         name:``,
         phone:``,
@@ -32,9 +30,10 @@ const Cart = () => {
             total:totalPurchase(),
             date: new Date()
         }
+       reloadStock ( orderToSend )
         
-        reloadStock(orderToSend)
-        clear()
+      
+        
         
     } 
     //if(processOrder){

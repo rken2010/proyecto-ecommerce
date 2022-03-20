@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, addDoc, collection, writeBatch, getDoc, doc } from "firebase/firestore";
-import { useToast } from '@chakra-ui/react'
+import Swal from 'sweetalert2'
 
 
 
@@ -24,9 +24,11 @@ export function sendOrder (orderToSend){
   addDoc(collection(db, "orders"), orderToSend)
     .then((response) => {
       console.log(response)
-    })
+      return response[1];
+    })  
 }
 //update DB // 
+
 export function reloadStock(orderToSend){
   const batch = writeBatch(db)
   const noStock = []
@@ -43,9 +45,15 @@ export function reloadStock(orderToSend){
       addDoc(collection(db, "orders"), orderToSend).then(({id}) => {
         batch.commit()
           .then(()=> {
-            alert(`compra realizada con exito ${id}`)
+              Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: "Su N° de pedido es: "+ `${id}`,
+            showConfirmButton: false,
+            timer: 9000
+          })
           })
       })
     }
   }
-  
+ 
