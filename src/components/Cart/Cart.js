@@ -5,7 +5,8 @@ import { ImCreditCard } from "react-icons/im";
 import { useContext, useState } from "react";
 import Context from "../../context/CartContext";
 import { reloadStock, sendOrder } from "../../service/firebase/firebase";
-import Swal from 'sweetalert2'
+import {Timestamp } from 'firebase/firestore'
+import ContactForm from "../ContactForm/ContactForm";
 
 
 const Cart = () => {
@@ -28,22 +29,27 @@ const Cart = () => {
             },
             items: cart,
             total:totalPurchase(),
-            date: new Date()
+            date: Timestamp.fromDate(new Date())
         }
        reloadStock ( orderToSend )
-        
-      
-        
-        
+     
     } 
-    //if(processOrder){
-    //    return <Heading>Su orden se esta procesando<Spinner/></Heading>
-    //}
-    //
+  
     return (
         <>
             {cart.map((prod) => 
-                <Stack spacing={5} alignItems="center" direction="row" justifyContent="space-between" divider={<StackDivider borderColor='gray.200' />} borderRadius="lg" padding="15px" shadow="base" mt="15px" >
+                <Stack 
+                    spacing={5} 
+                    alignItems="center" 
+                    direction="row" 
+                    justifyContent="space-between" 
+                    divider={<StackDivider borderColor='gray.200' />} 
+                    borderRadius="lg" 
+                    padding="15px" 
+                    shadow="base" 
+                    mt="15px" 
+                    key={prod?.id}
+                    >
                     <Image src={prod?.imagen} alt={prod?.nombre} boxSize="50px" />
                     <p>Producto: {prod?.nombre}</p>
                     <p>Cantidad: {prod?.quantity}</p>
@@ -54,6 +60,7 @@ const Cart = () => {
             <Stack m="20px">
                 <Heading as='h3' size='lg'>Total compra: $ {totalPurchase()}</Heading>
             </Stack>
+            <ContactForm />
             <Stack direction="row" alignItems="center" justifyContent="space-around">
                 <Button leftIcon={<SmallCloseIcon/>} colorScheme="pink" onClick={(e) => clear()} >Vaciar Carrito</Button>
                 <Button leftIcon={<ImCreditCard/>} colorScheme='teal' onClick={(e)=> completePurchase()}>Confirmar compra</Button>
