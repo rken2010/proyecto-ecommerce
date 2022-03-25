@@ -37,7 +37,7 @@ export const NavBar = () => {
           <Heading as="h1" color="orange.500">
           ROPA LIBRE
           </Heading>
-          <NavLink to={"/"}><Link>Home</Link></NavLink>
+          <NavLink to={"/"} activeClass="active"><Link>Home</Link></NavLink>
           <Stack 
                 spacing={5}
                 alignItems="space-evenly"
