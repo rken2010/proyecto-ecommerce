@@ -1,17 +1,13 @@
-import { useState } from 'react'
 import { Formik } from 'formik'
 import {  Input,  Container, Text, Button, FormLabel } from '@chakra-ui/react'
+import { useContext, useState } from 'react'
+import Context from '../../context/CartContext'
 
 
-const ContactForm = ( setContact ) => {
+const ContactForm = ( {setContact} ) => {
 
-  const [name, setName] = useState('')
-  const [mail, setMail] = useState('')
-  const [phone, setPhone] = useState('')
-  const [address, setAddress] = useState('')
-  const [comment, setComment] = useState('')
-
-
+ 
+  
 
 return (
   <Container 
@@ -24,23 +20,27 @@ return (
     >
     <Formik
       initialValues={{
-        nameBuyer: "",
+        name: "",
         mail: "",
         phone: "",
         address: "",
-        comment: "Escriba su comentario aqui"
+        comment: ""
       }}
 
-      onSubmit = { (values) => { console.log(values) } }
+      onSubmit = { (values) => { 
+        
+        const buyer =  JSON.stringify(values, null, 2 )
+        setContact(buyer) 
+      }}
 
       validate = { ( values ) => {
         const mjeError = {}
 
-        if(!values.nameBuyer){
-           mjeError.nameBuyer = "Por favor ingrese su nombre"
+        if(!values.name){
+           mjeError.name = "Por favor ingrese su nombre"
         }
-        else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.nameBuyer)){
-            mjeError.nameBuyer = "El nombre no es valido, ingrese solo letras y espacios"
+        else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.name)){
+            mjeError.name = "El nombre no es valido, ingrese solo letras y espacios"
         }  
         
         if(!values.mail){
@@ -64,26 +64,25 @@ return (
       return mjeError
     
     }}
-     
-    >
+     >
       { ( { handleSubmit, values, handleChange, handleBlur, errors } ) => (
 
         <form onSubmit={ handleSubmit }>
-          <FormLabel htmlFor='nameBuyer'>Nombre</FormLabel>
+          <FormLabel htmlFor='name'>Nombre</FormLabel>
               <Input 
                 variant='filled'
                 type="text"
-                id='nameBuyer'
-                name = "nameBuyer"
+                id='name'
+                name = "name"
                 placeholder= "Ingrese su nombre"
-                value={values.nameBuyer}
+                value={values.name}
                 size='md' 
                 onChange={ handleChange }
                 onBlur = { handleBlur}
                 mt="5px" 
                 mb="5px"
               />
-              {errors.nameBuyer && <Text color="red.500" mt="5px" mb="5px">{ errors.nameBuyer }</Text> }
+              {errors.name && <Text color="red.500" mt="5px" mb="5px">{ errors.name }</Text> }
           <FormLabel htmlFor='email'>E-mail</FormLabel>
               <Input 
                 variant='filled'
