@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
 import ItemList from "../ItemList/ItemList";
 import { db } from "../../service/firebase/firebase";
-import { getDocs , collection, QuerySnapshot, query, where } from "firebase/firestore";
+import { getDocs , collection, query, where } from "firebase/firestore";
 
 function ItemListContainer({shopName = "Ropa Libre "}){
     
@@ -25,8 +25,7 @@ function ItemListContainer({shopName = "Ropa Libre "}){
             .finally(() => {
                 setCargando(false)
             })
-            
-           
+
     }, [categoryId]); 
 
     return (
@@ -34,11 +33,9 @@ function ItemListContainer({shopName = "Ropa Libre "}){
         <Heading textAlign="center" m="20px">{shopName}</Heading>
 
         {cargando ? ( <Heading> Cargando... <Spinner/></Heading>) :
- 
             <Stack direction="row" spacing={4}>
                 <ItemList catalogo={catalogo} />
-            </Stack>
-
+            </Stack>        
         }
       </>
     )
