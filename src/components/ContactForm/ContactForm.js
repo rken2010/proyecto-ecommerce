@@ -3,9 +3,6 @@ import {  Input,  Container, Text, Button, FormLabel, Heading } from '@chakra-ui
 
 const ContactForm = ( {setContact} ) => {
 
- 
-  
-
 return (
   <Container 
     maxW='container.sm'

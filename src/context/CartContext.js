@@ -1,4 +1,5 @@
 import { createContext, useState } from "react"
+import { Stack, Text } from "@chakra-ui/react";
 
 export const Context = createContext()
 
@@ -7,10 +8,10 @@ export const CartContextProvider = ({children}) => {
     const [ contact, setContact ] = useState ();
     
     function addItem(productToAdd, quantity){
-        
         if(isInCart(productToAdd.id)){
             const item = findItem(productToAdd.id)
-            item.quantity += quantity
+            if(item.quantity > 0){item.quantity += quantity}
+            else{ return (<Stack><Text fontSize='xl' color="red.600"> No hay Stock</Text></Stack>) }
         }
         else{
             setCart([...cart, {...productToAdd, quantity }])
