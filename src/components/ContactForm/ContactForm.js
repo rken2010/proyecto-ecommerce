@@ -1,8 +1,5 @@
 import { Formik } from 'formik'
-import {  Input,  Container, Text, Button, FormLabel } from '@chakra-ui/react'
-import { useContext, useState } from 'react'
-import Context from '../../context/CartContext'
-
+import {  Input,  Container, Text, Button, FormLabel, Heading } from '@chakra-ui/react'
 
 const ContactForm = ( {setContact} ) => {
 
@@ -68,6 +65,7 @@ return (
       { ( { handleSubmit, values, handleChange, handleBlur, errors } ) => (
 
         <form onSubmit={ handleSubmit }>
+          <Heading m="15px" as='h2' size='lg' align="center" >Complete con sus datos para confirmar la compra</Heading>
           <FormLabel htmlFor='name'>Nombre</FormLabel>
               <Input 
                 variant='filled'

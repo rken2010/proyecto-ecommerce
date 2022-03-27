@@ -2,7 +2,7 @@ import { Button, Heading, Image, Stack, StackDivider, Spinner, Container  } from
 import { DeleteIcon } from '@chakra-ui/icons'
 import { SmallCloseIcon } from "@chakra-ui/icons";
 import { ImCreditCard } from "react-icons/im";
-import { useContext, useState, useRef } from "react";
+import { useContext, useState } from "react";
 import Context from "../../context/CartContext";
 import {collection, documentId, getDocs, query, Timestamp, writeBatch, where, addDoc } from 'firebase/firestore'
 import { db } from "../../service/firebase/firebase";
@@ -49,13 +49,14 @@ const Cart = () => {
     }
 
     const completePurchase = () =>{
-        
-        const orderToSend = {
+        if( contact.phone !== '' && contact.address !== '' && contact.name !== '') {
+         
+            const orderToSend = {
             buyer: contact,
             items: cart,
             total:totalPurchase(),
             date: Timestamp.fromDate(new Date())
-        }
+            }
 
         const noStock = []
         const ids = orderToSend.items.map( product => product.id )
@@ -96,6 +97,17 @@ const Cart = () => {
                 .finally(() => {
                     setProcessingOrder(false)
                 })
+            }
+            else {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: `Complete el formulario para completar la compra`,
+                    showConfirmButton: false,
+                    timer: 2000
+                  })
+
+            }
     } 
 
     if(processingOrder) {
@@ -147,11 +159,19 @@ const Cart = () => {
            
             <Stack direction="row" alignItems="center" justifyContent="space-around">
                 <Button leftIcon={<SmallCloseIcon/>} colorScheme="pink" onClick={(e) => clear()} >Vaciar Carrito</Button>
-                <Button leftIcon={<ImCreditCard/>} colorScheme='teal' onClick={(e)=> completePurchase()}>Confirmar compra</Button>
             </Stack>
             
             <ContactForm setContact = { setContact }/>
-           
+
+           { (contact.phone !== '' && contact.address !== '' && contact.name !== '') &&
+            <Stack direction="row" alignItems="center" justifyContent="space-around">
+                <Button 
+                    leftIcon={<ImCreditCard/>}
+                    colorScheme='teal'
+                    onClick={(e)=> completePurchase()}>Confirmar compra
+                </Button>
+            </Stack>
+            }
         </>
     )
 };
