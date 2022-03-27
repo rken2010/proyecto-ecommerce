@@ -1,7 +1,7 @@
 import { Formik } from 'formik'
 import {  Input,  Container, Text, Button, FormLabel, Heading } from '@chakra-ui/react'
 
-const ContactForm = ( {setContact} ) => {
+const ContactForm = ( { setContact , setViewForm} ) => {
 
 return (
   <Container 
@@ -23,8 +23,10 @@ return (
 
       onSubmit = { (values) => { 
         
-        const buyer =  JSON.stringify(values, null, 2 )
-        setContact(buyer) 
+        const prev =  JSON.stringify(values, null, 2 )
+        const buyer = JSON.parse ( prev)
+        setContact(buyer)
+        setViewForm ( false ) 
       }}
 
       validate = { ( values ) => {

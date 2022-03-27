@@ -1,6 +1,6 @@
-import { Button, Heading, Image, Stack, StackDivider, Spinner, Container  } from "@chakra-ui/react";
+import { Button, Heading, Image, Stack, StackDivider, Spinner, Container, Text  } from "@chakra-ui/react";
 import { DeleteIcon } from '@chakra-ui/icons'
-import { SmallCloseIcon } from "@chakra-ui/icons";
+import { SmallCloseIcon, EditIcon } from "@chakra-ui/icons";
 import { ImCreditCard } from "react-icons/im";
 import { useContext, useState } from "react";
 import Context from "../../context/CartContext";
@@ -8,6 +8,7 @@ import {collection, documentId, getDocs, query, Timestamp, writeBatch, where, ad
 import { db } from "../../service/firebase/firebase";
 import Swal from "sweetalert2";
 import ContactForm from "../ContactForm/ContactForm";
+import Checkout from "../Checkout/Checkout";
 
 
 const Cart = () => {
@@ -15,6 +16,8 @@ const Cart = () => {
    
     const [processingOrder, setProcessingOrder] = useState(false)
     const [ purchaseId, setPurchaseId] = useState()
+    const [ viewForm , setViewForm ] = useState ( true )
+    const [ viewResume , setViewResume ] = useState ( false )
     const [contact, setContact] = useState({
         name:``,
         mail:"",
@@ -23,14 +26,27 @@ const Cart = () => {
         comment:``,
     })
 
+    function refreshContact() {
+        setContact ({
+            name:``,
+            mail:"",
+            phone:``,
+            address:``,
+            comment:``,
+        })
+        setViewForm(true)
+    }
+
     const batch = writeBatch ( db )
 
     function purchase( orderToSend ){
         addDoc(collection(db, 'orders'), orderToSend)
             .then(({id}) => { 
                 setPurchaseId(id)
+                setViewResume(true)
+                setViewForm(false)
                 batch.commit()
-                clear()
+ 
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
@@ -41,7 +57,13 @@ const Cart = () => {
             })
         
           .catch (error => {
-            console.log(error)
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: `${error}`,
+                showConfirmButton: false,
+                timer: 2000
+              })
           })
           .finally(()=>{
             setProcessingOrder(false)
@@ -161,17 +183,36 @@ const Cart = () => {
                 <Button leftIcon={<SmallCloseIcon/>} colorScheme="pink" onClick={(e) => clear()} >Vaciar Carrito</Button>
             </Stack>
             
-            <ContactForm setContact = { setContact }/>
+            { viewForm === true ? <ContactForm setContact = { setContact } setViewForm = { setViewForm}/> : 
+                <Container Container maxW='container.md' padding={20}>
+                    <Stack>
+                        <Heading as="h6">Nombre</Heading><Text>{contact.name}</Text>
+                        <Heading as="h6">Direccion</Heading><Text>{contact.address}</Text>
+                        <Heading as="h6">Telefono</Heading><Text>{contact.phone}</Text>
+                        <Heading as="h6">E-mail</Heading><Text>{contact.mail}</Text>
+                        <Heading as="h6">Comentarios</Heading><Text>{contact.comment}</Text>
+                    </Stack>
+                </Container>
+            
+            }
 
-           { (contact.phone !== '' && contact.address !== '' && contact.name !== '') &&
+           { (contact.phone !== '' && contact.address !== '' && contact.name !== '' && viewResume === false) &&
             <Stack direction="row" alignItems="center" justifyContent="space-around">
                 <Button 
+                    mt={15}
                     leftIcon={<ImCreditCard/>}
                     colorScheme='teal'
                     onClick={(e)=> completePurchase()}>Confirmar compra
                 </Button>
+                <Button 
+                    mt={15}
+                    leftIcon={<EditIcon />}
+                    colorScheme='pink'
+                    onClick={(e)=> refreshContact()}>Modificar datos
+                </Button>
             </Stack>
             }
+            { viewResume === true &&  <Checkout contact = { contact } purchaseId = { purchaseId} /> }
         </>
     )
 };

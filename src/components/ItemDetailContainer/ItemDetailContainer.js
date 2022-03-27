@@ -20,8 +20,6 @@ const ItemDetailContainer = ({ id }) => {
                 .finally(() =>{
                     setCargando(false)
                 })
-                return (() => { setCatalogo() })                
-            
         }, [itemId])
 
     return (
