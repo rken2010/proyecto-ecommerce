@@ -42,3 +42,6 @@ https://drive.google.com/file/d/15LgmvzVc9MINBor2FnskKsNz0Ddhnphj/view?usp=shari
 Carrito de compra (gif)
 https://drive.google.com/file/d/1Io_pYKpIArnD_Lib_GGe-kqTnIPL-Yga/view?usp=sharing)
 
+# Funcionamiento
+
+Para probar el stock el producto ZAPATOS tiene un stock de 10.000 unidades mientras que PANTALON no tiene stock por lo que debe marcar error.
