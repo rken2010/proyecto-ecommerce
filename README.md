@@ -43,5 +43,5 @@ Carrito de compra (gif)
 https://drive.google.com/file/d/1Io_pYKpIArnD_Lib_GGe-kqTnIPL-Yga/view?usp=sharing)
 
 # Funcionamiento
-
+Visite https://rken2010.github.io/proyecto-ecommerce/index.html para ver el sitio en funcionamiento
 Para probar el stock el producto ZAPATOS tiene un stock de 10.000 unidades mientras que PANTALON no tiene stock por lo que debe marcar error.
